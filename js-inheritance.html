@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS Inheritance</title>
+</head>
+<body>
+    <script type="text/javascript">
+        function ClassExtends(FromClass, ToClass) {
+            FromClass.prototype = Object.create(ToClass.prototype);
+            FromClass.prototype.constructor = FromClass;
+        }
+
+        function Person(first, last, age) {
+            this.name = {
+                first: first,
+                last: last
+            };
+
+            this.age = age;
+        }
+
+        Person.prototype.greeting = function() {
+            console.log("Hi I\'m " + this.name.first);
+        };
+
+        function Teacher(first, last, age, subject) {
+            Person.call(this, first, last, age);
+
+            this.subject = subject;
+        }
+
+        ClassExtends(Teacher, Person);
+
+        var Rodrigo = new Person("Rodrigo III", "Galura", 24);
+        Rodrigo.greeting();
+
+        var TeacherMayMay = new Teacher("Micho Jean", "Morilla", 22, "English");
+        TeacherMayMay.greeting();
+    </script>
+</body>
+</html>
